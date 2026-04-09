@@ -2,145 +2,111 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Опрос готовности</title>
 <style>
-  html, body {
-  transform-origin: top left;
-  transform: scale(0.85);
-  width: 118%;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background: white;
-  width: 100vw;
-  height: 100vh;
+  width: 800px;
+  height: 500px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-
 .header {
   background: #B122F0;
   color: white;
-  padding: 20px 40px 16px;
+  padding: 14px 30px 12px;
   flex-shrink: 0;
 }
-.header h1 { font-size: 20px; font-weight: 700; }
-.header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+.header h1 { font-size: 16px; font-weight: 700; }
+.header p { font-size: 11px; opacity: 0.85; margin-top: 3px; }
 
 .content {
   flex: 1;
   display: flex;
-  gap: 0;
   overflow: hidden;
 }
-
 .questions-panel {
   flex: 1;
-  padding: 28px 40px;
+  padding: 18px 30px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
-
-.question-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .question-text {
-  font-size: 14px;
+  font-size: 13px;
   color: #222;
   font-weight: 500;
+  margin-bottom: 6px;
 }
-
 .rating-row {
   display: flex;
-  gap: 8px;
+  gap: 7px;
 }
-
 .rating-btn {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: 2px solid #d4b3f7;
   background: white;
   color: #B122F0;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .rating-btn:hover { background: #f3e0fd; border-color: #B122F0; }
 .rating-btn.selected { background: #B122F0; color: white; border-color: #B122F0; }
 
-.divider {
-  width: 1.5px;
-  background: #f0e6fd;
-  flex-shrink: 0;
-}
+.divider { width: 1.5px; background: #f0e6fd; flex-shrink: 0; }
 
 .result-panel {
-  width: 320px;
-  padding: 28px 32px;
+  width: 260px;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: #faf5ff;
+  flex-shrink: 0;
 }
-
 .result-placeholder {
   text-align: center;
   color: #c4a0e8;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.6;
 }
-.result-placeholder .icon { font-size: 32px; margin-bottom: 10px; }
-
+.result-placeholder .icon { font-size: 26px; margin-bottom: 8px; }
 .result-content { display: none; }
 .result-score {
-  font-size: 48px;
+  font-size: 42px;
   font-weight: 800;
   color: #B122F0;
   text-align: center;
   line-height: 1;
 }
 .result-label {
-  font-size: 12px;
+  font-size: 11px;
   color: #9a6bb5;
   text-align: center;
-  margin-top: 4px;
-  margin-bottom: 18px;
+  margin-top: 3px;
+  margin-bottom: 14px;
 }
 .result-verdict {
   background: white;
   border: 1.5px solid #e0c8f9;
-  border-radius: 14px;
-  padding: 14px 16px;
+  border-radius: 12px;
+  padding: 12px 14px;
 }
-.verdict-emoji { font-size: 22px; margin-bottom: 6px; }
-.verdict-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #B122F0;
-  margin-bottom: 6px;
-}
-.verdict-text {
-  font-size: 12px;
-  color: #555;
-  line-height: 1.55;
-}
+.verdict-emoji { font-size: 18px; margin-bottom: 5px; }
+.verdict-title { font-size: 13px; font-weight: 700; color: #B122F0; margin-bottom: 5px; }
+.verdict-text { font-size: 11px; color: #555; line-height: 1.5; }
 
 .footer {
   background: white;
   border-top: 1.5px solid #f0e6fd;
-  padding: 12px 40px;
+  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -149,13 +115,13 @@ body {
 .progress-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex: 1;
-  margin-right: 24px;
+  margin-right: 16px;
 }
 .progress-bar {
   flex: 1;
-  height: 6px;
+  height: 5px;
   background: #f0e6fd;
   border-radius: 3px;
   overflow: hidden;
@@ -167,36 +133,35 @@ body {
   transition: width 0.3s ease;
   width: 0%;
 }
-.progress-text { font-size: 12px; color: #9a6bb5; white-space: nowrap; }
-
+.progress-text { font-size: 11px; color: #9a6bb5; white-space: nowrap; }
 .btn-check {
   background: #B122F0;
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 10px 24px;
-  font-size: 14px;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   opacity: 0.4;
   pointer-events: none;
   transition: all 0.15s;
+  white-space: nowrap;
 }
 .btn-check.active { opacity: 1; pointer-events: all; }
 .btn-check.active:hover { background: #9a10d4; }
-
 .btn-reset {
   background: white;
   color: #B122F0;
   border: 2px solid #B122F0;
-  border-radius: 10px;
-  padding: 9px 18px;
-  font-size: 13px;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: 8px;
   display: none;
-  transition: all 0.15s;
+  white-space: nowrap;
 }
 .btn-reset:hover { background: #f3e0fd; }
 </style>
@@ -210,8 +175,7 @@ body {
 
 <div class="content">
   <div class="questions-panel">
-
-    <div class="question-row">
+    <div>
       <div class="question-text">У нас есть культура обратной связи?</div>
       <div class="rating-row" data-q="1">
         <button class="rating-btn" data-val="1">1</button>
@@ -221,8 +185,7 @@ body {
         <button class="rating-btn" data-val="5">5</button>
       </div>
     </div>
-
-    <div class="question-row">
+    <div>
       <div class="question-text">Компания понимает свои цели на год?</div>
       <div class="rating-row" data-q="2">
         <button class="rating-btn" data-val="1">1</button>
@@ -232,8 +195,7 @@ body {
         <button class="rating-btn" data-val="5">5</button>
       </div>
     </div>
-
-    <div class="question-row">
+    <div>
       <div class="question-text">Руководители готовы вкладываться в PR?</div>
       <div class="rating-row" data-q="3">
         <button class="rating-btn" data-val="1">1</button>
@@ -243,20 +205,19 @@ body {
         <button class="rating-btn" data-val="5">5</button>
       </div>
     </div>
-
   </div>
 
   <div class="divider"></div>
 
-  <div class="result-panel" id="result-panel">
+  <div class="result-panel">
     <div class="result-placeholder" id="result-placeholder">
       <div class="icon">🎯</div>
-      Ответьте на все вопросы<br>и нажмите «Узнать результат»
+      Ответьте на все вопросы<br>и нажмите кнопку
     </div>
     <div class="result-content" id="result-content">
       <div class="result-score" id="result-score"></div>
       <div class="result-label">из 15 возможных</div>
-      <div class="result-verdict" id="result-verdict">
+      <div class="result-verdict">
         <div class="verdict-emoji" id="verdict-emoji"></div>
         <div class="verdict-title" id="verdict-title"></div>
         <div class="verdict-text" id="verdict-text"></div>
@@ -275,7 +236,7 @@ body {
 </div>
 
 <script>
-const answers = { 1: null, 2: null, 3: null };
+const answers = {1: null, 2: null, 3: null};
 
 document.querySelectorAll('.rating-row').forEach(row => {
   const q = parseInt(row.dataset.q);
@@ -291,12 +252,10 @@ document.querySelectorAll('.rating-row').forEach(row => {
 
 function updateProgress() {
   const filled = Object.values(answers).filter(v => v !== null).length;
-  const pct = (filled / 3) * 100;
-  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-fill').style.width = (filled / 3 * 100) + '%';
   document.getElementById('progress-text').textContent = filled + ' из 3';
   const btn = document.getElementById('btn-check');
-  if (filled === 3) btn.classList.add('active');
-  else btn.classList.remove('active');
+  filled === 3 ? btn.classList.add('active') : btn.classList.remove('active');
 }
 
 function showResult() {
@@ -307,29 +266,22 @@ function showResult() {
 
   let emoji, title, text;
   if (total < 9) {
-    emoji = '🛠️';
-    title = 'Сначала поработайте над основой';
-    text = 'Ниже 9 — сначала выстройте культуру обратной связи и прозрачность целей, а потом запускайте PR.';
+    emoji = '🛠️'; title = 'Сначала — основа';
+    text = 'Выстройте культуру обратной связи и прозрачность целей, потом запускайте PR.';
   } else if (total <= 12) {
-    emoji = '🚀';
-    title = 'Можно начинать с пилота';
-    text = '9–12 — хороший старт. Запустите PR в одном отделе, отработайте процесс и масштабируйте.';
+    emoji = '🚀'; title = 'Можно начинать с пилота';
+    text = 'Запустите PR в одном отделе, отработайте процесс и масштабируйте.';
   } else {
-    emoji = '🏆';
-    title = 'Вы готовы — бегите внедрять!';
-    text = 'Больше 12 — у вас есть всё нужное. Запускайте Performance Review на всю компанию.';
+    emoji = '🏆'; title = 'Вы готовы — внедряйте!';
+    text = 'У вас есть всё нужное. Запускайте Performance Review на всю компанию.';
   }
 
   document.getElementById('verdict-emoji').textContent = emoji;
   document.getElementById('verdict-title').textContent = title;
   document.getElementById('verdict-text').textContent = text;
-
   document.getElementById('btn-check').style.display = 'none';
   document.getElementById('btn-reset').style.display = 'inline-block';
-
-  document.querySelectorAll('.rating-btn').forEach(b => {
-    b.style.pointerEvents = 'none';
-  });
+  document.querySelectorAll('.rating-btn').forEach(b => b.style.pointerEvents = 'none');
 }
 
 function resetAll() {
